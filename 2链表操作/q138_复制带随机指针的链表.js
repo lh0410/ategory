@@ -70,3 +70,29 @@ var copyRandomList = function(head) {
   }
   return map.get(head);
 };
+
+var copyRandomList2 = function(head) {
+  if (!head) {
+    return null;
+  }
+  let cur = head;
+  while (cur) {
+    let next = cur.next;
+    cur.next = new Node(cur.val);
+    cur.next.next = next;
+    cur = next;
+  }
+  cur = head;
+  while (cur) {
+    cur.next.random = cur.random ? cur.random.next : null;
+    cur = cur.next.next;
+  }
+  let res = cur = head.next, head0 = head;
+  while (head0) {
+    head0.next = head0.next.next;
+    cur.next = cur.next ? cur.next.next : null;
+    cur = cur.next;
+    head0 = head0.next;
+  }
+  return res;
+}
