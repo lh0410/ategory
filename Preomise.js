@@ -137,14 +137,14 @@ Promise.all = function(promises){
     i++;
     if(i == promises.length){
       resolve(arr);
-    };
-  };
+    }
+  }
   return new Promise((resolve,reject)=>{
     for(let i=0;i<promises.length;i++){
       promises[i].then(data=>{
         processData(i,data);
       },reject);
-    };
+    }
   });
 }
 class MyPromise{
