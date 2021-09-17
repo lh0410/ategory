@@ -1,67 +1,57 @@
-function ListNode(val, next) {
-  this.val = (val === undefined ? 0 : val)
-  this.next = (next === undefined ? null : next)
-}
-
 /**
- * @param {ListNode} head
- * @param {number} left
- * @param {number} right
- * @return {ListNode}
+ * @param {character[][]} board
+ * @param {string[]} words
+ * @return {string[]}
  *
- * 给你单链表的头节点 head 和两个整数 left 和 right ，其中 left <= right 。请你反转从位置 left 到位置 right 的链表节点，返回 反转后的链表 。
-  
+ * 给定一个 m x n 二维字符网格 board 和一个单词（字符串）列表 words，找出所有同时在二维网格和字典中出现的单词。
 
- 示例 1：
-
-
- 输入：head = [1,2,3,4,5], left = 2, right = 4
- 输出：[1,4,3,2,5]
- 示例 2：
-
- 输入：head = [5], left = 1, right = 1
- 输出：[5]
-  
-
- 提示：
-
- 链表中节点数目为 n
- 1 <= n <= 500
- -500 <= Node.val <= 500
- 1 <= left <= right <= n
-
+ 单词必须按照字母顺序，通过 相邻的单元格 内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母在一个单词中不允许被重复使用。
 
  来源：力扣（LeetCode）
- 链接：https://leetcode-cn.com/problems/reverse-linked-list-ii
+ 链接：https://leetcode-cn.com/problems/word-search-ii
  著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-var reverseBetween = function (head, left, right) {
-  let pre = undefined, cur = head, next, curIndex = 1, start;
-  while (curIndex < left) {
-    curIndex++;
-    pre = cur;
-    cur = cur.next;
-    start = cur;
-    // cur = leftNode, pre为cur的前置节点 start为leftNode
+var findWords = function(board, words) {
+  const map = new Map(), res = []
+  const [m, n] = [board.length, board[0].length];
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+      if (map.has(board[i][j])) {
+        map.get(board[i][j]).push([i,j]);
+      } else {
+        map.set(board[i][j],[[i,j]]);
+      }
+    }
   }
-  let preOfReverse = undefined;
-  while (curIndex <= right && cur) {
-    next = cur.next;
-    cur.next = preOfReverse;
-    preOfReverse = cur;
-    cur = next;
+  const fn = (used, i, j, word, index) => {
+    if (i < 0 || i >= m || j < 0 || j >= n || used[i][j]) {
+      return false
+    }
+    if (board[i][j] === word[index]) {
+      if (index === word.length - 1) return true
+      used[i][j] = 1
+      const res =  fn(used, i + 1, j, word, index + 1)
+          || fn(used, i - 1, j, word, index + 1)
+          || fn(used, i, j + 1, word, index + 1)
+          || fn(used, i, j - 1, word, index + 1)
+      used[i][j] = 0
+      return res
+    } else {
+      return false;
+    }
   }
-  pre.next = preOfReverse;
-  start.next = next;
-  return head;
+  for (const word of words) {
+    if (!map.has(word[0])) continue;
+    for (let i = 0; i < map.get(word[0]).length; i++) {
+      let used = new Array(m).fill(0).map(() => new Array(n).fill(0))
+      let is = fn(used, map.get(word[0])[i][0], map.get(word[0])[i][1], word, 0)
+      if (is) {
+        res.push(word);
+        break;
+      }
+    }
+  }
+  return res;
 };
-let head1 = new ListNode(1);
-let head2 = new ListNode(2);
-let head3 = new ListNode(3);
-let head4 = new ListNode(4);
-let head5 = new ListNode(5);
-head1.next = head2;
-head2.next = head3;
-head3.next = head4;
-head4.next = head5;
-reverseBetween(head1, 2, 4)
+findWords([["a","b","c"],["a","e","d"],["a","f","g"]],
+    ["abcdefg","gfedcbaaa","eaabcdgfa","befa","dgc","ade"])
