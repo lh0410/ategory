@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="421e5fed-255e-4ec7-a06d-96f734d1db2b" name="Default Changelist" comment="ddd">
-      <change afterPath="$PROJECT_DIR$/formatNum.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pub.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/q162寻找峰值.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/q212单词搜索 II.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/q36有效的数独a.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/q447回旋镖的数量.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/q524通过删除字母匹配到字典里最长单词.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2333.js" beforeDir="false" afterPath="$PROJECT_DIR$/2333.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Preomise.js" beforeDir="false" afterPath="$PROJECT_DIR$/Preomise.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/q292Nim 游戏.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/q650只有两个键的键盘.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +82,7 @@
       <workItem from="1630211589555" duration="53000" />
       <workItem from="1630211738907" duration="1140000" />
       <workItem from="1631237125780" duration="19546000" />
-      <workItem from="1631844018952" duration="2156000" />
+      <workItem from="1631844018952" duration="5651000" />
     </task>
     <servers />
   </component>
@@ -158,12 +152,6 @@
           <url>file://$PROJECT_DIR$/2333.js</url>
           <line>26</line>
           <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/q36有效的数独a.js</url>
-          <line>23</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
